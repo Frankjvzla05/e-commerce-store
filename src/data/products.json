@@ -1,0 +1,141 @@
+[
+     {
+          "pid": 1,
+          "title": "Mochila Azul",
+          "description": "Perfect pack for everyday use",
+          "code": "P001",
+          "price": 109.95,
+          "status": true,
+          "stock": 120,
+          "category": "accesorio",
+          "thumbnails": [
+               "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+          ]
+     },
+     {
+          "pid": 2,
+          "title": "Camisa cuello en V",
+          "description": "Slim-fitting style, lightweight and soft fabric",
+          "code": "P002",
+          "price": 22.3,
+          "status": true,
+          "stock": 259,
+          "category": "ropa",
+          "thumbnails": [
+               "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          ]
+     },
+     {
+          "pid": 3,
+          "title": "Chaqueta de algondon",
+          "description": "Great for Spring/Autumn/Winter",
+          "code": "P003",
+          "price": 55.99,
+          "status": true,
+          "stock": 500,
+          "category": "men's clothing",
+          "thumbnails": [
+               "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+          ]
+     },
+     {
+          "pid": 4,
+          "title": "Laptop Gaming",
+          "description": "Laptop de alta gama para juegos",
+          "code": "L001",
+          "price": 1500.99,
+          "status": true,
+          "stock": 50,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/laptop1.jpg",
+               "https://example.com/laptop2.jpg"
+          ]
+     },
+     {
+          "pid": 5,
+          "title": "Laptop Gaming 2.0",
+          "description": "Laptop de alta gama para juegos",
+          "code": "L001",
+          "price": 1500.99,
+          "status": true,
+          "stock": 10,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/laptop1.jpg",
+               "https://example.com/laptop2.jpg"
+          ]
+     },
+     {
+          "pid": 6,
+          "title": "Laptop Gaming 3",
+          "description": "Laptop de alta gama para juegos",
+          "code": "L001",
+          "price": 1500.99,
+          "status": true,
+          "stock": 10,
+          "category": "electrónica"
+     },
+     {
+          "pid": 7,
+          "title": "Laptop Gaming 5",
+          "description": "Laptop de alta gama para juegos",
+          "code": "L001",
+          "price": 1500.99,
+          "status": true,
+          "stock": 10,
+          "category": "electrónica"
+     },
+     {
+          "pid": 8,
+          "title": "Monitor Samsung",
+          "description": "Super Ultrawide Screen QLED",
+          "code": "P014",
+          "price": 999.99,
+          "status": true,
+          "stock": 140,
+          "category": "electronics",
+          "thumbnails": [
+               "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg"
+          ]
+     },
+     {
+          "pid": 9,
+          "title": "Tablet Pro",
+          "description": "Tablet de última generación",
+          "code": "T001",
+          "price": 499.99,
+          "status": true,
+          "stock": 100,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/tablet.jpg"
+          ]
+     },
+     {
+          "pid": 10,
+          "title": "Tablet Pro 2",
+          "description": "Tablet de última generación",
+          "code": "T001",
+          "price": 499.99,
+          "status": true,
+          "stock": 100,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/tablet.jpg"
+          ]
+     },
+     {
+          "pid": 11,
+          "title": "Tablet Pro 3",
+          "description": "Tablet de última generación",
+          "code": "T001",
+          "price": 499.99,
+          "status": true,
+          "stock": 100,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/tablet.jpg"
+          ]
+     }
+]
