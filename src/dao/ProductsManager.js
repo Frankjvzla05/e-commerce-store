@@ -61,10 +61,8 @@ export class ProductsManager {
             throw new Error(`Producto con id ${pid} no encontrado`);
         }
 
-        // No permitas la actualización del `pid`
         delete updatedFields.pid;
 
-        // Actualiza los campos del producto
         products[productIndex] = { ...products[productIndex], ...updatedFields };
 
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));

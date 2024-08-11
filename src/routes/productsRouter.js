@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
     if (limit) {
         limit = Number(limit)
         if (isNaN(limit)) {
-            // return res.send("El argumento limit tiene que ser numerico")
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({ error: `El argumento limit tiene que ser numerico` })
         }
@@ -39,7 +38,6 @@ router.get('/', async (req, res) => {
     }
 
     let resultado = products.slice(skip, skip + limit)
-    // res.send(resultado)
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ resultado });
 });
