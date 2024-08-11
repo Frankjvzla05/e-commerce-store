@@ -4,10 +4,9 @@ import { ProductsManager } from '../dao/ProductsManager.js';
 export const router = Router();
 
 router.get('/', async (req, res) => {
+    let products
     try {
-        let products = await ProductsManager.get();
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({ products });
+        products = await ProductsManager.get();
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -15,6 +14,34 @@ router.get('/', async (req, res) => {
             detalle: error.message
         });
     }
+
+    let { limit, skip } = req.query
+    if (limit) {
+        limit = Number(limit)
+        if (isNaN(limit)) {
+            // return res.send("El argumento limit tiene que ser numerico")
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(400).json({ error: `El argumento limit tiene que ser numerico` })
+        }
+    } else {
+        limit = products.length
+    }
+
+    if (skip) {
+        skip = Number(skip)
+        if (isNaN(skip)) {
+            // return res.send("El argumento skip tiene que ser numerico")
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(400).json({ error: `El argumento skip tiene que ser numerico` })
+        }
+    } else {
+        skip = 0
+    }
+
+    let resultado = products.slice(skip, skip + limit)
+    // res.send(resultado)
+    res.setHeader('Content-Type', 'application/json');
+    return res.status(200).json({ resultado });
 });
 
 router.post('/', async (req, res) => {
