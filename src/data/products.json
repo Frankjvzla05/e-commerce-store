@@ -137,5 +137,18 @@
           "thumbnails": [
                "https://example.com/tablet.jpg"
           ]
+     },
+     {
+          "pid": 12,
+          "title": "Tablet regular",
+          "description": "Tablet de última generación",
+          "code": "T001",
+          "price": 250,
+          "status": true,
+          "stock": 100,
+          "category": "electrónica",
+          "thumbnails": [
+               "https://example.com/tablet.jpg"
+          ]
      }
 ]

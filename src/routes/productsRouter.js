@@ -88,3 +88,66 @@ router.post('/', async (req, res) => {
         });
     }
 });
+
+router.get('/:pid',async(req,res)=>{
+    let {pid}=req.params
+    pid=Number(pid)
+    if(isNaN(pid)){
+        res.setHeader('Content-Type','application/json');
+        return res.status(400).json({error:`Ingrese un pid numérico`})
+    }
+
+    let products=await ProductsManager.get()
+    let product=products.find(p=>p.pid===pid)
+    if(!product){
+        res.setHeader('Content-Type','application/json');
+        return res.status(400).json({error:`No existe producto con pid ${pid}`})
+    }
+
+    res.setHeader('Content-Type','application/json')
+    res.status(200).json({product})
+});
+
+router.delete('/:pid', async (req, res) => {
+    let { pid } = req.params;
+    pid = Number(pid);
+    if (isNaN(pid)) {
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(400).json({ error: `Ingrese un pid numérico` });
+    }
+
+    try {
+        await ProductsManager.delete(pid);
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({ message: `Producto con pid ${pid} eliminado` });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            error: "Error al eliminar el producto",
+            detalle: error.message
+        });
+    }
+});
+
+router.put('/:pid', async (req, res) => {
+    let { pid } = req.params;
+    pid = Number(pid);
+    if (isNaN(pid)) {
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(400).json({ error: `Ingrese un pid numérico` });
+    }
+
+    const updatedFields = req.body;
+
+    try {
+        const updatedProduct = await ProductsManager.update(pid, updatedFields);
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({ message: `Producto con pid ${pid} actualizado`, updatedProduct });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            error: "Error al actualizar el producto",
+            detalle: error.message
+        });
+    }
+});

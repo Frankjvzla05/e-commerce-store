@@ -3,6 +3,7 @@ import fs from 'fs';
 export class ProductsManager {
     static path;
 
+    // GET - Listar todos los productos
     static async get() {
         if (fs.existsSync(this.path)) {
             return JSON.parse(await fs.promises.readFile(this.path, { encoding: "utf-8" }));
@@ -10,7 +11,7 @@ export class ProductsManager {
             return [];
         }
     }
-
+    //POST - CREAR NUEVO PRODUCTO
     static async create(product = {}) {
         /* Validaciones */
         if (!product.title || !product.description || !product.code || 
@@ -37,5 +38,36 @@ export class ProductsManager {
         products.push(newProduct);
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));
         return newProduct;
+    }
+    //DELETE - Eliminar producto
+    static async delete(pid) {
+        let products = await this.get();
+        const productIndex = products.findIndex(p => p.pid === pid);
+
+        if (productIndex === -1) {
+            throw new Error(`Producto con id ${pid} no encontrado`);
+        }
+
+        products.splice(productIndex, 1);
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));
+    }
+
+    // PUT - Actualizar producto por su PID
+    static async update(pid, updatedFields) {
+        let products = await this.get();
+        const productIndex = products.findIndex(p => p.pid === pid);
+
+        if (productIndex === -1) {
+            throw new Error(`Producto con id ${pid} no encontrado`);
+        }
+
+        // No permitas la actualización del `pid`
+        delete updatedFields.pid;
+
+        // Actualiza los campos del producto
+        products[productIndex] = { ...products[productIndex], ...updatedFields };
+
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));
+        return products[productIndex];
     }
 }
