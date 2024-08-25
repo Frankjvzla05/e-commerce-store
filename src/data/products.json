@@ -114,41 +114,12 @@
      },
      {
           "pid": 10,
-          "title": "Tablet Pro 2",
-          "description": "Tablet de última generación",
-          "code": "T001",
-          "price": 499.99,
+          "title": "Mouse",
+          "description": "Mouse inalambrico",
+          "code": "lg50",
+          "price": 80,
           "status": true,
-          "stock": 100,
-          "category": "electrónica",
-          "thumbnails": [
-               "https://example.com/tablet.jpg"
-          ]
-     },
-     {
-          "pid": 11,
-          "title": "Tablet Pro 3",
-          "description": "Tablet de última generación",
-          "code": "T001",
-          "price": 499.99,
-          "status": true,
-          "stock": 100,
-          "category": "electrónica",
-          "thumbnails": [
-               "https://example.com/tablet.jpg"
-          ]
-     },
-     {
-          "pid": 12,
-          "title": "Tablet regular",
-          "description": "Tablet de última generación",
-          "code": "T001",
-          "price": 250,
-          "status": true,
-          "stock": 100,
-          "category": "electrónica",
-          "thumbnails": [
-               "https://example.com/tablet.jpg"
-          ]
+          "stock": 50,
+          "category": "electronica"
      }
 ]

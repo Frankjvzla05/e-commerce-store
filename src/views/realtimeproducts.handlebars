@@ -1,0 +1,39 @@
+<h2>Productos en tiempo real</h2>
+
+<div>
+    <ul id="products">
+        {{#each realTimeProducts}}
+        <li style="display: flex; align-items:center">
+            <p>{{title}} - ${{price}}</p>
+            <button id={{pid}} onclick="deleteProduct({{pid}})"
+                style="height: fit-content; margin-left:1rem">Eliminar</button>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+
+<hr>
+
+<form style="
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+">
+    <input type="text" id="title" placeholder="Nombre del producto">
+    <input type="text" id="description" placeholder="Descripcion del producto del producto">
+    <input type="text" id="code" placeholder="Codigo del producto">
+    <input type="text" id="price" placeholder="Precio del producto">
+    <input type="text" id="stock" placeholder="Stock del producto">
+    <input type="text" id="category" placeholder="Categoria del producto">
+    <input type="submit" id="submitProduct" value="Crear Producto">
+</form>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
