@@ -1,6 +1,7 @@
 import express from 'express';
 import {engine} from 'express-handlebars';
 import {Server} from 'socket.io'
+import { connDB } from './connDB.js';
 
 import { router as productsRouter } from './routes/productsRouter.js';
 import { router as cartsRouter } from './routes/cartsRouter.js';
@@ -8,13 +9,14 @@ import { router as vistasRouter } from './routes/vistasRouter.js';
 
 import { ProductsManager } from './dao/ProductsManager.js';
 import { CartsManager } from './dao/CartsManager.js';
+import { config } from './config/config.js';
 
 let io
 
 ProductsManager.path = "./src/data/products.json";
 CartsManager.path = "./src/data/carts.json";
 
-const PORT = 8080;
+const PORT = config.PORT;
 const app = express();
 
 app.use(express.json());
@@ -48,3 +50,5 @@ const server = app.listen(PORT, () => {
 });
 
 io=new Server(server)  //websockets server
+
+connDB()
