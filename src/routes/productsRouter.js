@@ -1,7 +1,6 @@
 import { Router } from 'express';
 // import { ProductsManager } from '../dao/ProductsManager.js';
 import { ProductsManagerMongoDao as ProductsManager } from '../dao/ProductsManagerMongoDao.js';
-import { isValidObjectId } from 'mongoose';
 export const router = Router();
 
 router.get('/', async (req, res) => {
@@ -109,9 +108,8 @@ router.get('/:pid',async(req,res)=>{
 
 router.delete('/:pid', async (req, res) => {
     let { pid } = req.params;
-    // pid = Number(pid);
-    // if (isNaN(pid)) {
-    if(!isValidObjectId(pid)) {
+    pid = Number(pid);
+    if (isNaN(pid)) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `Ingrese un pid numérico` });
     }
@@ -131,9 +129,8 @@ router.delete('/:pid', async (req, res) => {
 
 router.put('/:pid', async (req, res) => {
     let { pid } = req.params;
-    // pid = Number(pid);
-    // if (isNaN(pid)) {
-    if(!isValidObjectId(pid)) {
+    pid = Number(pid);
+    if (isNaN(pid)) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `Ingrese un pid numérico` });
     }

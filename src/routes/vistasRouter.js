@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { ProductsManager } from '../dao/ProductsManager.js';
+// import { ProductsManager } from '../dao/ProductsManager.js';
+import { ProductsManagerMongoDao as ProductsManager } from '../dao/ProductsManagerMongoDao.js';
 export const router=Router()
 
 router.get('/', async(req,res)=>{

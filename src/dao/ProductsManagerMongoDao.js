@@ -23,12 +23,12 @@ export class ProductsManagerMongoDao {
     }
     //DELETE - Eliminar producto
     static async delete(pid) {
-        return await productsModel.findByIdAndDelete(pid).lean()
+        return await productsModel.findOneAndDelete({ pid }).lean();
     }
 
     // PUT - Actualizar producto por su PID
     static async update(pid, updatedFields) {
 
-        return await productsModel.findByIdAndUpdate(pid, updatedFields, { new: true }).lean()
+        return await productsModel.findOneAndUpdate({ pid }, updatedFields, { new: true }).lean();
     }
 }

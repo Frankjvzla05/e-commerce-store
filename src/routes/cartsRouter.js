@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { CartsManager } from '../dao/CartsManager.js';
-
+// import { CartsManager } from '../dao/CartsManager.js';
+import { CartsManagerMongoDao as CartsManager } from '../dao/CartsManagerMongoDao.js';
+import { isValidObjectId } from 'mongoose';
 export const router = Router();
 
 
@@ -22,7 +23,8 @@ router.get('/', async (req, res) => {
 // Crear un nuevo carrito
 router.post('/', async (req, res) => {
     try {
-        let newCart = await CartsManager.create();
+        const cartData = req.body;
+        let newCart = await CartsManager.create(cartData);
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({ newCart });
     } catch (error) {
@@ -37,8 +39,9 @@ router.post('/', async (req, res) => {
 // Listar productos en un carrito por ID
 router.get('/:cid', async (req, res) => {
     let { cid } = req.params;
-    cid = Number(cid);
-    if (isNaN(cid)) {
+    // cid = Number(cid);
+    // if (isNaN(cid)) {
+    if(!isValidObjectId(cid)) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `Ingrese un cid numérico` });
     }
