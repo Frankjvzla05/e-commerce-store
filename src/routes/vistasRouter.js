@@ -24,3 +24,8 @@ router.get('/realtimeproducts', async(req,res)=>{
     res.status(200).render("realtimeproducts", {realTimeProducts})
 })
 
+router.get('/products', async(req,res)=>{
+
+    res.setHeader('Content-Type','text/html')
+    res.status(200).render("products")
+})

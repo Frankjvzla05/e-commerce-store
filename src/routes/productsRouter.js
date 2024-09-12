@@ -4,42 +4,59 @@ import { ProductsManagerMongoDao as ProductsManager } from '../dao/ProductsManag
 export const router = Router();
 
 router.get('/', async (req, res) => {
-    let products
+    let { page, limit, skip } = req.query;
+
+    if (!page || isNaN(Number(page))) {
+        page = 1;
+    }
+
+    if (!limit || isNaN(Number(limit))) {
+        limit = 10;  
+    } else {
+        limit = Number(limit);
+    }
+
+    let productsPaginated;
     try {
-        products = await ProductsManager.get();
+        productsPaginated = await ProductsManager.getPaginate(Number(page));
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        return res.status(500).json({
             error: "Error inesperado en el servidor",
             detalle: error.message
         });
     }
+    
+    let products = productsPaginated;
 
-    let { limit, skip } = req.query
-    if (limit) {
-        limit = Number(limit)
-        if (isNaN(limit)) {
-            res.setHeader('Content-Type', 'application/json');
-            return res.status(400).json({ error: `El argumento limit tiene que ser numerico` })
+    if(limit && skip){
+        if (limit) {
+            limit = Number(limit);
+            if (isNaN(limit)) {
+                res.setHeader('Content-Type', 'application/json');
+                return res.status(400).json({ error: `El argumento limit tiene que ser numérico` });
+            }
+        } else {
+            limit = productsPaginated.length;
         }
-    } else {
-        limit = products.length
-    }
-
-    if (skip) {
-        skip = Number(skip)
-        if (isNaN(skip)) {
-            // return res.send("El argumento skip tiene que ser numerico")
-            res.setHeader('Content-Type', 'application/json');
-            return res.status(400).json({ error: `El argumento skip tiene que ser numerico` })
+    
+        if (skip) {
+            skip = Number(skip);
+            if (isNaN(skip)) {
+                res.setHeader('Content-Type', 'application/json');
+                return res.status(400).json({ error: `El argumento skip tiene que ser numérico` });
+            }
+        } else {
+            skip = 0;
         }
-    } else {
-        skip = 0
+    
+        products = productsPaginated.docs.slice(skip, skip + limit);
     }
+    
+    
 
-    let productos = products.slice(skip, skip + limit)
     res.setHeader('Content-Type', 'application/json');
-    return res.status(200).json({ productos });
+    return res.status(200).json({ products });
 });
 
 router.post('/', async (req, res) => {

@@ -9,6 +9,10 @@ export class ProductsManagerMongoDao {
         return await productsModel.find().lean()
 
     }
+    static async getPaginate(page=1, limit = 10) {
+        return await productsModel.paginate({},{lean:true, page, limit})
+
+    }
     //POST - CREAR NUEVO PRODUCTO
     static async create(product = {}) {
         // Obtener el último pid usado

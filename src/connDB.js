@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { config } from "./config/config.js"
 
-// Agregar esta línea antes de la conexión a MongoDB
 mongoose.set('strictQuery', false);
 
 export const connDB = async () => {

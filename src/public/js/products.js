@@ -78,7 +78,3 @@ socket.on('newProduct', newProduct => {
     productsBox.append(liNewProduct)
 })
 
-
-
-
-
